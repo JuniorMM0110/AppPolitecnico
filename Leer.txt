@@ -1,0 +1,6 @@
+Actualmente la BD está a la mitad, dentro de un rato la actualizo completa, en setup van a encontrar el ejecutable 
+de la BD instálenlo en su XAMPP mientras tanto, en caso de que vayan a trabajar, entre ayer y hoy estuve configurando
+o el repositorio, los directorios y la forma que trabajaremos, intentemos priorizar el funcionamiento antes de lo
+estético.
+
+Si van a trabajar hoy en su parte procuren de no desorganizar nada y documentar cada parte de código pa' no perderse.

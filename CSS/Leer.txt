@@ -1,0 +1,2 @@
+Quiero que organicen el css por pagina bien modularizado, en caso de que vean un codigo repetitivo
+simplemente lo ponen en template por ejemplo el header o footer son repetitivos
