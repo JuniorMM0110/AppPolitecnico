@@ -1,27 +1,26 @@
 <?php
     //importando datos
     require('../../../setup/datosConexion.php');
+    
 
     //prueba
-   /* $user = new usuario("Anderr09","Anderson25");
-    $user->Comprobar();
-    $user->insertar(1);*/
+    $user = new Usuario("Ander09","Anderson25");
+    $user->insertar(1);
     class usuario{
         //funcion constructora
         function __construct($nombreUser,$pass)
         {
             $this->nombre = $nombreUser;
             $this->pass = $pass;
-            $this->datos = new conexion();
+            $this->datos = new Conexion();
         }
         //acceso a datos
         private $nombre;
         private $pass;
-        //esta variable nos indicara si este usuario existe
-        private $disponible;
 
+        //una funcion que añadi y me dio pereza volver una funcion común :D
         //funcion para comprobar si el usuario existe
-        function Comprobar(){
+       /* function Comprobar(){
         $conex = $this->datos->conexion();
         $sql = ("SELECT * FROM usuario WHERE nombreUsuario = '$this->nombre'");
         try{
@@ -41,13 +40,15 @@
             echo $e->getMessage();
         }
        
-        }
+        }*/
+
+
         //funcion para insertar un usuario depende del nivel que vayamos a ingresar
         // Nivel 1 cliente, Nivel 2 Empleado, Nivel 3 Admin
         //Despues añadiremos a profundidad bien los niveles de usuarios mientras esto es lo basico
         function insertar($nivelUser){
             //
-            if($this->Comprobar()==false){
+            if($this->datos->ComprobarDato("usuario","nombreUsuario",$this->nombre)==false){
                 //creando un objeto de conexion
                 if($nivelUser <= 3){
                     $conex = $this->datos->conexion();
@@ -67,11 +68,13 @@
                     }catch(PDOException $e){
                         print($e->getMessage());
                     }
+                    $conex = null;
                 }else{
                     //aqui inmediatamente devolvera un false ya que el nivel introducido no esta contemplado
                     return false;
                 }
             }
+
         }
     }
 ?>
