@@ -3,8 +3,9 @@
     require('../../../setup/datosConexion.php');
 
     //prueba
-    /*$user = new usuario("Anderr009","Anderson25");
-    $user->Comprobar();*/
+   /* $user = new usuario("Anderr09","Anderson25");
+    $user->Comprobar();
+    $user->insertar(1);*/
     class usuario{
         //funcion constructora
         function __construct($nombreUser,$pass)
@@ -48,7 +49,7 @@
             //
             if($this->Comprobar()==false){
                 //creando un objeto de conexion
-                if($nivelUser >= 3){
+                if($nivelUser <= 3){
                     $conex = $this->datos->conexion();
                     //String de la consulta SQL
                     $sql = "INSERT INTO USUARIO VALUES(NULL,
@@ -56,7 +57,13 @@
                     //preparacion y ejecucion de la consulta
                     try{
                     $registro = $conex->prepare($sql);
-                    $registro->execute() or die(print("Error al intentar la query"));
+                    $registro->execute();
+                    //en caso de insertarse correctamente se devolvera un valor verdadero
+                    if($registro){
+                        return true;
+                    }else{
+                        return false;
+                    }
                     }catch(PDOException $e){
                         print($e->getMessage());
                     }
