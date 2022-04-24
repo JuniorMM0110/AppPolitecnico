@@ -3,21 +3,6 @@
     require('../../../setup/datosConexion.php');
     require("correo.php");
     require("user.php");
-    //prueba
-    $corr = new Correo("Anderson_02@hotmail.com","1234");
-    $corr->insertarCorreo();
-    //
-    $user = new Usuario("Ander09","Anderson25");
-    $user->insertar(1);
-    //empleado
-    $empleado = new Empleado("Anderson","Ortiz","9080","Bayona","8:59AM"
-    ,"4:59PM",$user,$corr);
-    if($empleado->InsertarEmpleado() == true){
-        echo "Se inserto";
-    }else{
-        echo "no";
-    }
-
     //clase empleado
     class Empleado{
         function __construct($nombre,$apellido,
