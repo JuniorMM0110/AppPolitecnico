@@ -1,12 +1,28 @@
 <?php
     //importando datos
     require('../../../setup/datosConexion.php');
+    require("correo.php");
+    require("user.php");
+    //prueba
+    $corr = new Correo("Anderson_02@hotmail.com","1234");
+    $corr->insertarCorreo();
+    //
+    $user = new Usuario("Ander09","Anderson25");
+    $user->insertar(1);
+    //empleado
+    $empleado = new Empleado("Anderson","Ortiz","9080","Bayona","8:59AM"
+    ,"4:59PM",$user,$corr);
+    if($empleado->InsertarEmpleado() == true){
+        echo "Se inserto";
+    }else{
+        echo "no";
+    }
+
     //clase empleado
-    class empleado{
-        function __construct($id,$nombre,$apellido,
+    class Empleado{
+        function __construct($nombre,$apellido,
         $cedula,$direccion,$horaEntrada,$horaSalida,$objUser,$objCorreo)
         {
-            $this->id = $id;
             $this->nombre = $nombre;
             $this->apellido = $apellido;
             $this->cedula = $cedula;
@@ -15,9 +31,12 @@
             $this->horaSalida = $horaSalida;
             $this->objUser = $objUser;
             $this->objCorreo = $objCorreo;
-            $this-> conex = new Conexion();
+            $this-> datos = new Conexion();
+            $this->fkUser=$this->datos->GetId("usuario","nombreUsuario",$this->objUser->GetUser());
+            $this->fkCorreo = $this->datos->GetId("correo","correo",$this->objCorreo->GetCorreo());
         }
         //
+        private $id;
         private $nombre; 
         private $apellido;
         private $cedula;
@@ -27,34 +46,35 @@
         private $objUser;
         private $objCorreo;
         //id
-        private $fkCorreo = $this->conex->GetId("correo","correo",$this->objCorreo->GetCorreo());
-        private $fkUser = $ObjUser->GetId("usuario","nombreUsuario",$this->objUser->GetUser());
+        private $fkCorreo;
+        private $fkUser;
+       // private 
         //funcion insertar empleado
         function InsertarEmpleado(){
-            //conexion
-            $this->conex->conexion();
+            //conexion      
+            $conex = $this->datos->conexion();
             //comporbar si existe el mismo numero de cedula en la BD
-            if($this->conex->ComprobarDato("empleado","cedula",$this->cedula) == false){
+            if($this->datos->ComprobarDato("empleado","cedula",$this->cedula) != false){
                 return false;
             }else{
                 //consulta sql
                 $sql = "INSERT INTO empleado VALUES(
                     null,'$this->nombre','$this->apellido',
                     '$this->cedula','$this->direccion','$this->horaEntrada',
-                    '$this->horaSalida','$this->fkCorreo','$this->fkUser'
+                    '$this->horaSalida',$this->fkCorreo,$this->fkUser
                 )";
                 //PDO
-                $consulta = $this->conex->prepare($sql);
+                $consulta = $conex->prepare($sql);
                 try{
                     $consulta->execute();
                 }catch(PDOException $e){
                     print($e->getMessage());
                 }
                 //comprobar si se ejecuto la consulta
-                if($consulta){
-                    return true;
-                }else{
+                if($consulta == false){
                     return false;
+                }else{
+                    return true;
                 }
             }
         }

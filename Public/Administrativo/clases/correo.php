@@ -1,11 +1,8 @@
 <?php
     //clase de correo
     //importando datos
-    require('../../../setup/datosConexion.php');
+  //  require('../../../setup/datosConexion.php');
 
-    //prueba
-    $corr = new Correo("Anderson_02@hotmail.com","1234");
-    $corr->insertarCorreo();
     class Correo{
         function __construct($correo,$pass)
         {

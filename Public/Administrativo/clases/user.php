@@ -1,11 +1,7 @@
 <?php
     //importando datos
-    require('../../../setup/datosConexion.php');
-    
-
-    //prueba
-    $user = new Usuario("Ander09","Anderson25");
-    $user->insertar(1);
+    //require('../../../setup/datosConexion.php');
+  
     class usuario{
         //funcion constructora
         function __construct($nombreUser,$pass)

@@ -17,7 +17,6 @@
                 $conexion = new PDO($dsn,$this->host,$this->pass);
                 //CONSULTA PARA USAR LA BD QUE SE NECESITA
                 $conexion->exec("USE $this->nombreBD");
-                echo "conexion completa";
             }catch(PDOException $e){
                 echo $e->getMessage();
             }
@@ -49,7 +48,7 @@
         //funcion para devolver el ID
         function GetId($tabla,$campo,$valorCamp){
             $conex = $this->conexion();
-            $sql = "SELECT ID from $tabla where $campo = $valorCamp";
+            $sql = "SELECT ID from $tabla where $campo = '$valorCamp'";
             $consulta = $conex->prepare($sql);
             $consulta ->execute();
             //
