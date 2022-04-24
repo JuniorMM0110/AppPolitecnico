@@ -46,5 +46,15 @@
                 echo $e->getMessage();
             }
         }
+        //funcion para devolver el ID
+        function GetId($tabla,$campo,$valorCamp){
+            $conex = $this->conexion();
+            $sql = "SELECT ID from $tabla where $campo = $valorCamp";
+            $consulta = $conex->prepare($sql);
+            $consulta ->execute();
+            //
+            $resultado = $consulta->fetch(PDO::FETCH_ASSOC);
+            return $resultado['ID'];
+        }
     }
 ?>
