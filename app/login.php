@@ -19,9 +19,10 @@ $query->execute();
 
 $result = $query->fetch(PDO::FETCH_ASSOC);
 
-if($usuario == $result['usuario'] || $cont == $result['contraseña']){
+if($usuario = $result['usuario'] || $cont = $result['contraseña']){
 	header("location:../index.php");
 }else{
-	echo "NO";
+	header("location:../login.php");
+
 }
 ?>

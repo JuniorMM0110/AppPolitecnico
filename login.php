@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<title>Formulario de Registro</title>
-		<link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
 	</head>
 	<body>
 <div class="container">
@@ -25,6 +24,6 @@
 </div>
 </div>
 </div>
-		<script src="js/valida_login.js"></script>
+		<script src="JS/Scripts/validar/login/valida_login.js"></script>
 	</body>
 </html>

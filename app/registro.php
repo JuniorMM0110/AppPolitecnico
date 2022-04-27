@@ -12,8 +12,9 @@ $sql = "INSERT INTO `ulogin` (`id`, `usuario`, `fullname`, `email`, `contraseña
 $envio = mysqli_query($conexion, $sql);
 
 if($envio){
-	echo "funciono";
+	header("location:../login.php");
 }else{
-	echo "no funciono";
+	header("location:../registro.php");
+
 }
 ?>
