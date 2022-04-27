@@ -3,6 +3,30 @@
     require('../../../setup/datosConexion.php');
     require("correo.php");
     require("user.php");
+    //funciones relacionadas a la clase
+    function EliminarEmpleado($id){
+        //conexion 
+        $conex = new Conexion();
+        $cn = $conex->conexion();
+        //sql
+        $sql = "DELETE FROM empleado where ID = $id";
+        //preparacion 
+        $consulta = $cn->prepare($sql);
+        try{
+            $consulta->execute();
+        }catch(PDOException $e){
+            $e->getMessage();
+        }
+        //retorno
+        if($consulta != false){
+            return true;
+        }else{
+            return false;
+        }
+        $conex = null;
+        $cn = null;
+    }
+    
     //clase empleado
     class Empleado{
         function __construct($nombre,$apellido,
@@ -63,5 +87,6 @@
                 }
             }
         }
+       
     }
 ?>
