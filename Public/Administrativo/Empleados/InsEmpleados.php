@@ -28,6 +28,11 @@
             <label for="Cedula">Cedula:</label>
             <input type="text" name="Cedula" autocomplete="off" id="">
         </div>
+        <!--Salario-->
+        <div class="monto" id="monto">
+            <label for="salario">Salario:</label>
+            <input type="text" name="salario">
+        </div>
         <!--Hora_entrada-->
         <div class="horaE">
             <label for="HoraEntrada">Hora de entrada:</label>
@@ -70,23 +75,24 @@
         </div>
         <input type="submit" value="Enviar" name="Enviar">
         <!--Script para validar el formulario-->
-        <script src="../../../JS/scripts/validar/empleado/validarCorreo.js"></script>
+       <!-- <script src="../../../JS/scripts/validar/empleado/validarCorreo.js"></script>-->
         <?php
             if(isset($_POST['Enviar'])){
                 //obtencion de datos
                 //datos para el usuario
-                $user = $_POST['NombreUser'];
+                $user = $_POST['user'];
                 $pass = $_POST['pass'];
+                $pass2 = $_POST['pass2'];
                 //datos para el correo
                 $correo = $_POST['correo'];
                 //datos para el empleado
                 $nombre = $_POST['Nombre'];
                 $apellido = $_POST['Apellido'];
                 $cedula = $_POST['Cedula'];
+                $salario = $_POST['salario'];
                 $direccion = $_POST['direccion'];
                 $horaEntrada = $_POST['HoraEntrada'];
                 $horaSalida = $_POST['HoraSalida'];
-                echo $pass;
                 //comprobacion (temporal luego sera reemplazada por js)
                 if($user == "" or $pass == "" or $correo =="" or $nombre =="" or $apellido == ""
                 or $cedula == "" or $horaEntrada =="" or $horaSalida == ""){
@@ -100,10 +106,11 @@
                     $objCorreo->insertarCorreo();
                     $objUser->insertar(1);
                     //empleado
-                    $empleado = new Empleado($nombre,$apellido,$cedula,$direccion,$horaEntrada,$horaSalida,$objUser,$objCorreo);
+                    $empleado = new Empleado($nombre,$apellido,$cedula,$salario,$direccion,$horaEntrada,$horaSalida,$objUser,$objCorreo);
                     try{
                         if($empleado->InsertarEmpleado() != false){
-                            echo "Empleado insertado correctamente";
+                        header("refresh:0");
+                    
                         }
                     }catch(PDOException $e){
                         echo $e->getMessage();

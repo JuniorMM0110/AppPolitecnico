@@ -9,19 +9,24 @@
 <body>
     <?php
         //  
+        require("../../../setup/datosConexion.php");
         require('../clases/empleado.php');
+        //
+    
       //  require('../../../setup/datosConexion.php');
         if(isset($_GET['id'])){
             $valorElim = $_GET['id'];
             //eliminar en caso de que presionen el boton de eliminar
-            EliminarEmpleado($valorElim);
-            header("location:elimEmpleados.php");
+            if($valorElim != null){
+                EliminarEmpleado($valorElim);
+                header("location:elimEmpleados.php");
+            }
         }
         //conexion
         $conex = new Conexion();
         $cn = $conex-> conexion();
         //consulta para ver los empleados
-        $sql = "SELECT empleado.ID,empleado.Nombre,empleado.Apellido,empleado.cedula,
+        $sql = "SELECT empleado.ID,empleado.salario,empleado.Nombre,empleado.Apellido,empleado.cedula,
         empleado.HoraEntrada,correo.correo,usuario.nombreUsuario,usuario.Nivel
         FROM empleado 
         INNER JOIN correo on correo.ID = empleado.fkCorreo
@@ -40,6 +45,7 @@
             <td>Hora de entrada:</td>
             <td>Correo:</td>
             <td>Nombre de usuario:</td>
+            <td>Salario del emepleado:</td>
             <td colspan="2">Opciones:</td>
             </tr>
             <?php
@@ -51,7 +57,6 @@
                 $e->getMessage();
             }
             while($resultado = $consulta->fetch(PDO::FETCH_ASSOC)){
-                echo $resultado['ID'];
                 ?>
                 <tr>
                      <td><?php echo $resultado['Nombre'];?></td>
@@ -59,7 +64,8 @@
                      <td><?php echo $resultado['HoraEntrada'];?></td>
                      <td><?php echo $resultado['correo'];?></td>
                      <td><?php echo $resultado['nombreUsuario'];?></td>
-                     <td><a href="#">Ajustes</a></td>
+                     <td><?php echo $resultado['salario'];?></td>
+                     <td><a href="FormAjustes/formAjustes.php?id=<?php echo$resultado['ID']?>">Ajustes</a></td>
                     <td><a href="?id=<?php echo$resultado['ID']?>">Eliminar</a></td>
                 </tr>
             

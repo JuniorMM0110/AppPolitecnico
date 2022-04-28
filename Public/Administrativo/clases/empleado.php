@@ -1,9 +1,35 @@
 <?php
     //importando datos
-    require('../../../setup/datosConexion.php');
+    
     require("correo.php");
     require("user.php");
+   // require('../../../setup/datosConexion.php');
     //funciones relacionadas a la clase
+
+    //funcion para generar un empleado a base de un id
+    function GenerarEmpleado($id){
+        $conex = new Conexion();
+        $cn = $conex->conexion();
+        //consulta
+        $sql = "SELECT * FROM EMPLEADO 
+        INNER JOIN USUARIO ON EMPLEADO.fkUsuario = USUARIO.ID
+        INNER JOIN CORREO ON EMPLEADO.fkCorreo = CORREO.ID
+        WHERE empleado.ID = $id";
+        //
+        $query = $cn->prepare($sql);
+        $query->execute();
+        $registro = $query->fetch(PDO::FETCH_ASSOC);
+        //objetos
+        $objCorreo = new Correo($registro['correo'],$registro['contraseña']);
+        $objUser = new usuario($registro['nombreUsuario'],$registro['contraseña']);
+        //empleado
+        $empleado = new Empleado($registro['Nombre'],$registro['Apellido'],
+        $registro['cedula'],$registro['salario'],$registro['Direccion'],
+        $registro['HoraEntrada'],$registro['HoraSalida'],$objUser,$objCorreo);
+        $empleado->SetId($registro['ID']);
+        return $empleado;
+    }
+    //funcion eliminar empleados
     function EliminarEmpleado($id){
         //conexion 
         $conex = new Conexion();
@@ -30,7 +56,7 @@
     //clase empleado
     class Empleado{
         function __construct($nombre,$apellido,
-        $cedula,$direccion,$horaEntrada,$horaSalida,$objUser,$objCorreo)
+        $cedula,$salario,$direccion,$horaEntrada,$horaSalida,$objUser,$objCorreo)
         {
             $this->nombre = $nombre;
             $this->apellido = $apellido;
@@ -40,9 +66,10 @@
             $this->horaSalida = $horaSalida;
             $this->objUser = $objUser;
             $this->objCorreo = $objCorreo;
-            $this-> datos = new Conexion();
+            $this->datos = new Conexion();
             $this->fkUser=$this->datos->GetId("usuario","nombreUsuario",$this->objUser->GetUser());
             $this->fkCorreo = $this->datos->GetId("correo","correo",$this->objCorreo->GetCorreo());
+            $this->salario = $salario;
         }
         //
         private $id;
@@ -54,10 +81,15 @@
         private $horaSalida;
         private $objUser;
         private $objCorreo;
-        //id
+        private $salario;
+        //id para crear un nuevo
         private $fkCorreo;
         private $fkUser;
        // private 
+       //funcion para añadirle un ID 
+       function SetId($id){
+           $this->id = $id;
+       }
         //funcion insertar empleado
         function InsertarEmpleado(){
             //conexion      
@@ -69,7 +101,7 @@
                 //consulta sql
                 $sql = "INSERT INTO empleado VALUES(
                     null,'$this->nombre','$this->apellido',
-                    '$this->cedula','$this->direccion','$this->horaEntrada',
+                    '$this->cedula',$this->salario,'$this->direccion','$this->horaEntrada',
                     '$this->horaSalida',$this->fkCorreo,$this->fkUser
                 )";
                 //PDO
