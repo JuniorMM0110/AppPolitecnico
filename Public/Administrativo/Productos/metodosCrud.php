@@ -9,4 +9,8 @@
 
             return mysqli_fetch_all($result,MYSQLI_ASSOC);
         }
+        public function insertarDatosProducto($datos){
+            $c= new Conexion();
+            $conexion=$c->conexion();
+        }
     }

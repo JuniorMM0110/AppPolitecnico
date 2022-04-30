@@ -35,30 +35,6 @@
 
     </form>
     <br>
-    <table style="border-collapse: collapse;" border="1">
-    <tr>
-        <td>Serial</td>
-        <td>Nombre</td>
-        <td>fechaIngreso</td>
-        <td>Precio</td>
-        <td>CantidadDISP</td>
-        <td>Descuento</td>
-    </tr>
-    <?php 
-    $obj= new metodos();
-    $sql="SELECT `Serial`, `Nombre`, `fechaIngreso`, `Precio`, `CantidadDISP`, `Descuento` FROM `producto` WHERE 1";
-    $datos=$obj->mostrarDatos($sql);
-
-    foreach ($datos as $key){
-    ?>
-    <tr>
-        <td><?php echo $key['Serial'];?></td>
-        <td><?php echo $key['Nombre'];?></td>
-        <td><?php echo $key['fechaIngreso'];?></td>
-        <td><?php echo $key['CantidadDISP'];?></td>
-        <td><?php echo $key['Descuento'];?></td>
-    </tr>
-    <?php } ?>
 </table>
 </body>
 </html>
