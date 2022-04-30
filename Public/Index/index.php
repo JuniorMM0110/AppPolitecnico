@@ -1,3 +1,7 @@
+<?php session_start();
+error_reporting(0);
+ ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +14,17 @@
     <title>Document</title>
 </head>
 <body>
-    <?php include("../../includes/header-noregistrado.php") ?>
+
+    <?php 
+     if($_SESSION['iniciado'] == true){ 
+        include("../../includes/headerR.php");
+    }else{
+        include("../../includes/header-NR.php");
+
+    }
+        ?>
+
+        
+    
 </body>
 </html>

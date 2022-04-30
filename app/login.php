@@ -1,4 +1,5 @@
 <?php
+session_start();
 require("../setup/datosConexion.php");
 
 $conexion = new Conexion();
@@ -20,7 +21,8 @@ $query->execute();
 $result = $query->fetch(PDO::FETCH_ASSOC);
 
 if($usuario = $result['usuario'] || $cont = $result['contraseña']){
-	header("location:../index.php");
+	header("location:../Public/Index/index.php");
+	$_SESSION['iniciado'] = true;
 }else{
 	header("location:../login.php");
 
