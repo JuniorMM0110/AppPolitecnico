@@ -1,3 +1,9 @@
+/* Variables */
+
+.inline-block{
+	display: inline-block;
+}
+
 body {
 	margin: 0;
 	padding: 0;
@@ -14,6 +20,7 @@ body {
 	background: #333;
 	color: white;
 	height: 80px;
+	width: 100%;
 }	
 	#main-header a {
 		color: white;
@@ -76,4 +83,29 @@ body {
 					transition: ease all 1s;
 					border-radius: 4px;
 				}
+
+/* Boton */
+
+
+
+/* Contenido */
+
+.contenido{
+	margin: auto;
+	display: block;
+	text-align: center;
+}
+
+.pContenido{
+	display: inline-flex;
+
+}
+
+.contenidoInfo{
+	display: block;
+	margin-left: 40px;
+	padding: 50px;
+	box-shadow: rgb(226, 226, 226)  1px 2px 1px 1px;
+	margin-bottom: 5px;
+}
 

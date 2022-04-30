@@ -12,10 +12,6 @@
         }
         private $correo;
         private $pass;
-        //func getters
-        function GetCorreo(){
-            return $this->correo;
-        }
         //func comprobarCorreo
         function insertarCorreo(){
             if($this->datos->comprobarDato("correo","correo",$this->correo)==false){

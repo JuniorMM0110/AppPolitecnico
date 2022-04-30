@@ -1,6 +1,10 @@
 <?php session_start();
-error_reporting(0);
- ?>
+error_reporting(18);
+error_reporting(20);
+
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,7 +28,23 @@ error_reporting(0);
     }
         ?>
 
-        
+        <div class="publicar">
+            <a href="../cliente/publicar.php"><button>Publicar</button></a>
+        </div>
+
+    <div class="contenido">
+    <?php
+
+
+    include("../../includes/Contenido.php");
+
+    
+    ?>
+    <!-- LINEA 2 -->
+    
+    <!-- LINEA 3 -->
+
+    </div>
     
 </body>
 </html>

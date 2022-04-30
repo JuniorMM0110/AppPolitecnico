@@ -7,7 +7,6 @@
         <link rel="stylesheet" href="../CSS/styles.css">
 </head>
 
-<?php session_start(); ?>
 
 <body>
 	
