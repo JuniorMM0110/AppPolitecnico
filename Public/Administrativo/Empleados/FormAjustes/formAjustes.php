@@ -19,19 +19,18 @@
         session_start();
         //añadiendo variables
         $_SESSION['ObjetoEmpleado'] = $empleadoModif;
-        echo var_dump($_SESSION['ObjetoEmpleado']);
-
+        //obj
+        $empleado = $_SESSION['ObjetoEmpleado'];
     ?>
     <div class="ajustes">
         <div class="info-empleado">
-            <p>Id del empleado: </p>
-            <p>Modificando datos de: </p>
+            <p>Id del empleado: <?php echo $empleado->GetId()?></p>
+            <p>Modificando datos de: <?php echo $empleado->GetNombreC()?></p>
         </div>
         <div class="btn">
-            <a href="#">Modificar nivel de usuario</a>
-            <a href="#">Modificar datos del empleado</a>
-            <a href="#">Cambiar nombre de usuario</a>
-            <a href="#">Cambiar correo</a>
+            <a href="modificar-niveluser/modNivelUser.php">Modificar nivel de usuario</a>
+            <a href="Modificar-empleado/modDatos.php">Modificar datos del empleado</a>
+            <a href="Modificar-correo/modCorreo.php">Cambiar correo</a>
         </div>
     </div>
 </body>

@@ -26,7 +26,7 @@
         $empleado = new Empleado($registro['Nombre'],$registro['Apellido'],
         $registro['cedula'],$registro['salario'],$registro['Direccion'],
         $registro['HoraEntrada'],$registro['HoraSalida'],$objUser,$objCorreo);
-        $empleado->SetId($registro['ID']);
+        $empleado->SetId($id);
         return $empleado;
     }
     //funcion eliminar empleados
@@ -86,9 +86,65 @@
         private $fkCorreo;
         private $fkUser;
        // private 
-       //funcion para añadirle un ID 
+       //Getters y Setters
+       //funciones correo
+       function GetCorreo(){
+            return $this->objCorreo->GetCorreo();
+       }
+       function GetPassCorreo(){
+           return $this->objCorreo->GetPass();
+       }
+       //funciones direccion
+       function GetDireccion(){
+           return $this->direccion;
+       }
+       //funciones horaEntrada
+       function GetHoraE(){
+           return $this->horaEntrada;
+       }
+       //funciones horaSalidda
+       function GetHoraS(){
+           return $this->horaSalida;
+       }
+       //funciones salario
+       function GetSalario(){
+           return $this->salario;
+       }
+       //funciones cedula
+       function GetCedula(){
+           return $this->cedula;
+       }
+       //funciones ID
        function SetId($id){
            $this->id = $id;
+       }
+       function GetId(){
+           return $this->id;
+       }
+       //Nombre
+       function GetNombreC(){
+           return $this->nombre. " ".$this->apellido;
+       }
+       //usuario
+       function GetUser(){
+           return $this->objUser->GetUser();
+       }
+       //nivel de usuario
+       function GetFkUser(){
+           return $this->fkUser;
+       }
+       function GetNivel(){
+           //conexino
+           $conex = $this->datos->conexion();
+           //consulta 
+           $sql = "SELECT usuario.Nivel,`niveles-usuario`.Nivel FROM `usuario` 
+           INNER JOIN `niveles-usuario` on usuario.Nivel = `niveles-usuario`.ID
+           WHERE usuario.ID = $this->fkUser";
+            //Preparacion 
+            $consulta = $conex->prepare($sql);
+            $consulta->execute();
+            $registro = $consulta->fetch(PDO::FETCH_ASSOC);
+            return $registro['Nivel'];
        }
         //funcion insertar empleado
         function InsertarEmpleado(){
