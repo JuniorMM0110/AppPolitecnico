@@ -18,7 +18,7 @@
 
 		<nav class="nav">
 			<ul>
-				<li><a href="#">Inicio</a></li>
+			<li><a href="C:\xampp\htdocs\Lista\AppPolitecnico\Public\Index\index.php">Inicio</a></li>
 				<li><a href="<?php unset($_SESSION['iniciado']); ?>">Cerrar sesión</a></li>
 				<li><a href="#">Opciones</a></li>
 			</ul>
