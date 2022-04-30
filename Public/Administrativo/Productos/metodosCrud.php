@@ -2,7 +2,7 @@
 
     class metodos{
         public function mostrarDatos($sql){
-            $c = new conectar();
+            $c = new Conexion();
             $conexion=$c->conexion();
 
             $result=mysqli_query($conexion,$sql);
