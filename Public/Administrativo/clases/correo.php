@@ -2,7 +2,29 @@
     //clase de correo
     //importando datos
   //  require('../../../setup/datosConexion.php');
-
+    //funcion para eliminar correo
+    function EliminarCorreo($id){
+        //conexion 
+        $conex = new Conexion();
+        $cn = $conex->conexion();
+        //sql
+        $sql = "DELETE FROM correo where ID = $id";
+        //preparacion 
+        $consulta = $cn->prepare($sql);
+        try{
+            $consulta->execute();
+        }catch(PDOException $e){
+            $e->getMessage();
+        }
+        //retorno
+        if($consulta != false){
+            return true;
+        }else{
+            return false;
+        }
+        $conex = null;
+        $cn = null;
+    }
     class Correo{
         function __construct($correo,$pass)
         {

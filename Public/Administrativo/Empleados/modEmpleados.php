@@ -16,10 +16,14 @@
       //  require('../../../setup/datosConexion.php');
         if(isset($_GET['id'])){
             $valorElim = $_GET['id'];
+            $valorUs = $_GET['idUs'];
+            $valorCor = $_GET['idCor'];
             //eliminar en caso de que presionen el boton de eliminar
             if($valorElim != null){
                 EliminarEmpleado($valorElim);
-                header("location:elimEmpleados.php");
+                EliminarUsuario($valorUs);
+                EliminarCorreo($valorCor);
+                header("location:modEmpleados.php");
             }
         }
         //conexion
@@ -27,17 +31,24 @@
         $cn = $conex-> conexion();
         //consulta para ver los empleados
         $sql = "SELECT empleado.ID,empleado.salario,empleado.Nombre,empleado.Apellido,empleado.cedula,
-        empleado.HoraEntrada,correo.correo,usuario.nombreUsuario,usuario.Nivel
+        empleado.HoraEntrada,correo.correo,usuario.nombreUsuario,usuario.Nivel,empleado.fkUsuario,empleado.fkCorreo
         FROM empleado 
         INNER JOIN correo on correo.ID = empleado.fkCorreo
         INNER JOIN usuario on usuario.ID = empleado.fkUsuario;";
         //consulta para contar los empleados
+        
         $queryCount = "SELECT COUNT(ID) as Empleados FROM empleado";
         $SQLContador = $cn->prepare($queryCount);
         $SQLContador->execute();
         $contador = $SQLContador->fetch(PDO::FETCH_ASSOC);
-    ?>
-    <h2>Número de empleados: <?php echo $contador['Empleados']?> </h2>
+    ?>  
+    <a href="../Dashboard/dashboard.php">Volver al menu</a>
+
+    
+    <div class="informacion">
+        <h2>Número de empleados: <?php echo $contador['Empleados']?> </h2>
+        <a href="Buscador/buscador.php">Buscar por filtros</a>
+    </div>
     <table>
         <tr>
             <td>Nombre completo:</td>
@@ -65,8 +76,9 @@
                      <td><?php echo $resultado['correo'];?></td>
                      <td><?php echo $resultado['nombreUsuario'];?></td>
                      <td><?php echo $resultado['salario'];?></td>
+                     <?php echo $resultado['fkCorreo'];?>
                      <td><a href="FormAjustes/formAjustes.php?id=<?php echo$resultado['ID']?>">Ajustes</a></td>
-                    <td><a href="?id=<?php echo$resultado['ID']?>">Eliminar</a></td>
+                    <td><a href="?id=<?php echo$resultado['ID']?>&idUs=<?php echo$resultado['fkUsuario']?>&idCor=<?php echo$resultado['fkCorreo']?>">Eliminar</a></td>
                 </tr>
             
             <?php 

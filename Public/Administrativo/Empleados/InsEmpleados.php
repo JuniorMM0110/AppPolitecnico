@@ -9,7 +9,9 @@
 <body>
     <?php
         require("../clases/empleado.php");
+        require("../../../setup/datosConexion.php");
     ?>
+    <a href="../Dashboard/Gestion-empleados/gestion.php">Cancelar</a>
     <!-- El input de texto en direccion es temporal hasta que se introduzca
         el script para la ubicacion, cada input va acompañado con su propio label.-->
     <form action="" method="POST" id="formulario">
@@ -109,7 +111,7 @@
                     $empleado = new Empleado($nombre,$apellido,$cedula,$salario,$direccion,$horaEntrada,$horaSalida,$objUser,$objCorreo);
                     try{
                         if($empleado->InsertarEmpleado() != false){
-                        header("refresh:0");
+                        header("location:../Dashboard/dashboard.php");
                     
                         }
                     }catch(PDOException $e){
