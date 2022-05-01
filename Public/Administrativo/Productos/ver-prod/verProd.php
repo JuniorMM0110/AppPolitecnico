@@ -20,9 +20,12 @@
         $consulta->execute();
         if(isset($_GET['id'])){
             $id = $_GET['id'];
+            $url = $_GET['direct'];
             $sqlDelete = "DELETE FROM producto WHERE id = $id";
             $sentencia = $cn->prepare($sqlDelete);
             $sentencia->execute();
+            unlink($url);
+            header("location:?");
         }
     ?>
     <table>
@@ -43,7 +46,7 @@
                 <td><?php echo $registro['Disponible'];?></td>
                 <td><?php echo $registro['fechaIngreso'];?></td>
                 <td><?php echo $registro['Descuento'];?></td>
-                <td><a href="?id=<?php echo $registro['id'];?>">Eliminar</a></td>
+                <td><a href="?id=<?php echo $registro['id'];?>&direct=<?php echo $registro['foto'];?>">Eliminar</a></td>
                 <td><a href="../mod-prod/mod-prod.php?id=<?php echo $registro['id'];?>">Modificar</a></td>
             </tr>
             <?php }

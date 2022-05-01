@@ -29,6 +29,7 @@
                     $producto = $_SESSION['productoTemp'];
                     $producto->SetFoto($destino.$nombreImg);
                     $producto->InsertarProducto();
+                    header("location:insProducto.php");
                 }else{
                     ?>
                     <div class="msj-error">
@@ -44,6 +45,7 @@
             }
         }
     ?>
+    <a href="cancelar.php">Cancelar</a>
     <form action="" method="POST" enctype="multipart/form-data">
         <div>
         <label for="imagen">Subir imagen</label>

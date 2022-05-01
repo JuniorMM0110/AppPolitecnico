@@ -26,8 +26,8 @@
            header("location:ins-imagen.php");
         }
     ?>
-    <!-- El input de texto en direccion es temporal hasta que se introduzca
-        el script para la ubicacion, cada input va acompañado con su propio label.-->
+    <!-- Volver al dashboard es temporal a lo que se programa un inventario.-->
+    <a href="../../Dashboard/dashboard.php">Volver</a>
     <form action="" method="POST">
         <label for="Name">Nombre del Producto</label>
         <input type="text" name="nombre" id="">
