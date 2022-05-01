@@ -13,7 +13,7 @@
         
         function conexion(){
             try{
-                $dsn = "mysql:localhost; dbname=$this->nombreBD;charset=UTF8";
+                $dsn = "mysql:host=127.0.0.1; dbname=$this->nombreBD;charset=UTF8";
                 $conexion = new PDO($dsn,$this->host,$this->pass);
                 //CONSULTA PARA USAR LA BD QUE SE NECESITA
                 $conexion->exec("USE $this->nombreBD");
