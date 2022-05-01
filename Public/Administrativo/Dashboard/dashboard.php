@@ -17,6 +17,9 @@
         <div class="bloque">
             <a href="#">Publicaciones</a>
         </div>
+        <div class="bloque">
+            <a href="../Encuesta/dashboard-encuesta/dashboard.php">Gestionar encuestas</a>
+        </div>
     </div>
 </body>
 </html>
