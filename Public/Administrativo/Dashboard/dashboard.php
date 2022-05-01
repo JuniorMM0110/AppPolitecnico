@@ -9,7 +9,7 @@
 <body>
     <div class="columna-izquierda">
         <div class="bloque">
-            <a href="#">Gestionar empleados</a>
+            <a href="Gestion-empleados/gestion.php">Gestionar empleados</a>
         </div>
         <div class="bloque">
             <a href="#">Inventario</a>

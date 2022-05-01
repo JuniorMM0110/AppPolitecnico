@@ -32,6 +32,7 @@
     //funcion eliminar empleados
     function EliminarEmpleado($id){
         //conexion 
+
         $conex = new Conexion();
         $cn = $conex->conexion();
         //sql
