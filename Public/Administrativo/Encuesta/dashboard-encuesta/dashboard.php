@@ -8,5 +8,6 @@
 </head>
 <body>
     <a href="../insertar/insEncuesta.php">Crear una nueva encuesta</a>
+    <a href="../ver-encuesta/ver.php">Ver encuestas</a>
 </body>
 </html>
