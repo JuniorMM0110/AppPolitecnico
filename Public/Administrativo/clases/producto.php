@@ -26,6 +26,20 @@
     //    private $fechaI;
         private $disponibles;
         private $precio;
+        private $foto;
+        function SetFoto($url){
+            $this->foto = $url;
+        }
+        //funcion INSERTAR FOTO
+      /*  function InsertarFoto(){
+            $conex = new Conexion();
+            $cn = $conex->conexion();
+            //sql
+            $sqlInsert = "INSERT INTO producto (foto) VALUE ('$this->foto')";
+            //
+            $sentencia = $cn->prepare($sqlInsert);
+            $sentencia->execute();
+        }*/
         //funciones precio
         function GetPrecio(){
             return $this->precio;
@@ -61,10 +75,10 @@
         function InsertarProducto(){
             $conex = new Conexion();
             $cn = $conex->conexion();
-            $fecha = date("d m Y");
+            $fecha = date("d/m/Y");
             // consulta
             $sql = "INSERT INTO producto VALUES(null,'$this->nombre',
-            '$fecha',$this->precio,'$this->disponibles', 0)";
+            '$fecha',$this->precio,'$this->disponibles', 0,'$this->foto')";
             $consulta = $cn->prepare($sql);
             try{
                 $consulta->execute();

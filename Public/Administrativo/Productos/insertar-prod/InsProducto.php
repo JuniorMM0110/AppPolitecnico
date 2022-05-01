@@ -21,7 +21,9 @@
             $disponibles = $_POST['cantidad'];
             $producto = new Producto($nombre,$disponibles,$precio);
            // $descuento = $_POST[''];
-           $producto->InsertarProducto();
+           session_start();
+           $_SESSION['productoTemp'] = $producto;
+           header("location:ins-imagen.php");
         }
     ?>
     <!-- El input de texto en direccion es temporal hasta que se introduzca

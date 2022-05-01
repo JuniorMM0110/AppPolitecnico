@@ -12,7 +12,7 @@
             <a href="Gestion-empleados/gestion.php">Gestionar empleados</a>
         </div>
         <div class="bloque">
-            <a href="#">Inventario</a>
+            <a href="../Inventario/inventario.php">Inventario</a>
         </div>
         <div class="bloque">
             <a href="#">Publicaciones</a>
