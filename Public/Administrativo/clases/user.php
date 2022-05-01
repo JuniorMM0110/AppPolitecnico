@@ -1,7 +1,30 @@
 <?php
     //importando datos
     //require('../../../setup/datosConexion.php');
-  
+    //funcion para eliminar ususarios
+        //funcion eliminar empleados
+function EliminarUsuario($id){
+    //conexion 
+    $conex = new Conexion();
+    $cn = $conex->conexion();
+    //sql
+    $sql = "DELETE FROM usuario where ID = $id";
+    //preparacion 
+    $consulta = $cn->prepare($sql);
+    try{
+        $consulta->execute();
+    }catch(PDOException $e){
+        $e->getMessage();
+    }
+    //retorno
+    if($consulta != false){
+        return true;
+    }else{
+        return false;
+    }
+    $conex = null;
+    $cn = null;
+        }
     class usuario{
         //funcion constructora
         function __construct($nombreUser,$pass)
