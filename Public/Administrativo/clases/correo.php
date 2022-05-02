@@ -34,14 +34,17 @@
         }
         private $correo;
         private $pass;
+// HEAD
+
         //func getters
         function GetCorreo(){
             return $this->correo;
         }
         function GetPass(){
             return $this->pass;
-        }
-        //func comprobarCorreo
+        } 
+        // upstream/main
+//func comprobarCorreo
         function insertarCorreo(){
             if($this->datos->comprobarDato("correo","correo",$this->correo)==false){
                 //establecer una conexion
@@ -59,6 +62,5 @@
             }
         }
     }
-    //funcion para insertar un correo
-    
+    //funcion para insertar un correo    
 ?>
