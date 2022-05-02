@@ -1,3 +1,5 @@
+<?php  session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,37 +11,46 @@
 </head>
 <body>
     <?php require("../../setup/datosConexion.php"); ?>
-    <?php session_start(); 
+    <?php 
+         $id_user = '';
+         if (!empty($id_user)){
+     
+             $id_user = $_SESSION['estado'];   
+         }
+          if(isset($id_user)){ 
+              include("../../includes/headerR.php");
+        }else{
+            include("../../includes/header-NR.php");
+
+    }
     $conexion = new Conexion();
     $conex = $conexion->conexion();
     
-            
-            $sentenciaSQL= $conex->prepare("SELECT * FROM publicar");
+    
+    $sentenciaSQL= $conex->prepare("SELECT * FROM publicar");
             $sentenciaSQL->execute();
             $lista=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
 
             $sentenciaSQL= $conex->prepare("SELECT * FROM ulogin");
             $sentenciaSQL->execute();
             $usuario=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
-    
-    
+            
+            
+            
     ?>
 
-    <!-- HEADER -->
+<!-- HEADER -->
 
-    <?php 
-     if($_SESSION['iniciado'] = true){ 
-        include("../../includes/headerR.php");
-    }else{
-        include("../../includes/header-NR.php");
-
-    }
+        <?php 
+        $sentenciaSQL= $conex->prepare("SELECT * FROM ulogin WHERE id = 2");
+        $sentenciaSQL->execute();
+        $usuario=$sentenciaSQL->fetchAll(PDO::FETCH_ASSOC);
         ?>
-
         <!-- CONTENIDO -->
+        
             <a href="../index/index.php"><h2>Volver</h2></a>
         
-            <h3>Publicaciones de: (USERNAME)</h3>
+            <h3>Publicaciones de: <?php echo $usuario['usuario'] ?></h3>
         
 
     <div id="contenedor-publicaciones" class="inline-block">

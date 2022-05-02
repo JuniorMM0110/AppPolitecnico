@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,20 @@
     <title>Document</title>
 </head>
 <body>
+<?php 
+         
+          if(isset($_SESSION['estado'])){ 
+              include("../../includes/headerR.php");
+        }else{
+            include("../../includes/header-NR.php");
+
+    }
+
+        ?>
     <form action="../../app/publicar.php" method="post">
+        <div>
+            <input type="Hidden" name="id">
+        </div>
 
     <div >
         Estado:<br>
@@ -21,6 +35,8 @@
 
     </p>   
  </div>
+
+
         
         <div>
             <label for="">Titulo</label>

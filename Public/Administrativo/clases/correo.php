@@ -34,34 +34,33 @@
         }
         private $correo;
         private $pass;
-// <<<<<<< HEAD
-// =======
-//         //func getters
-//         function GetCorreo(){
-//             return $this->correo;
-//         }
-//         function GetPass(){
-//             return $this->pass;
-//         }
-// >>>>>>> upstream/main
-//         //func comprobarCorreo
-//         function insertarCorreo(){
-//             if($this->datos->comprobarDato("correo","correo",$this->correo)==false){
-//                 //establecer una conexion
-//                 $conex = $this->datos->conexion();
-//                 $sql = "INSERT INTO CORREO VALUES(NULL,'$this->correo','$this->pass')";
-//                 try{
-//                     $resultado = $conex->prepare($sql);
-//                     $resultado->execute() or die(print("Fallo al ejecutar"));
-//                     return true;
-//                 }catch(PDOException $e){
-//                     print($e->getMessage());
-//                 }
-//             }else{
-//                 return false;
-//             }
-//         }
-//     }
-//     //funcion para insertar un correo
-    
+// HEAD
+
+        //func getters
+        function GetCorreo(){
+            return $this->correo;
+        }
+        function GetPass(){
+            return $this->pass;
+        } 
+        // upstream/main
+//func comprobarCorreo
+        function insertarCorreo(){
+            if($this->datos->comprobarDato("correo","correo",$this->correo)==false){
+                //establecer una conexion
+                $conex = $this->datos->conexion();
+                $sql = "INSERT INTO CORREO VALUES(NULL,'$this->correo','$this->pass')";
+                try{
+                    $resultado = $conex->prepare($sql);
+                    $resultado->execute() or die(print("Fallo al ejecutar"));
+                    return true;
+                }catch(PDOException $e){
+                    print($e->getMessage());
+                }
+            }else{
+                return false;
+            }
+        }
+    }
+    //funcion para insertar un correo    
 ?>

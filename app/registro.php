@@ -12,7 +12,7 @@ $sql = "INSERT INTO `ulogin` (`id`, `usuario`, `fullname`, `email`, `contraseña
 $envio = mysqli_query($conexion, $sql);
 
 if($envio){
-	header("location:/Public/Index/index.php");
+	header("location:../Public/Index/index.php");
 }else{
 	header("location:../registro.php");
 

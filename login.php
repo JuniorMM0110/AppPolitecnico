@@ -17,6 +17,8 @@
 		  <div class="form-group">
 		    <label for="password">Contrase&ntilde;a</label>
 		    <input type="password" class="form-control" id="password" name="password" placeholder="Contrase&ntilde;a">
+			<br>
+			Mantener sesion iniciada<input type="checkbox" name="mantener_sesion_abierta" value="si"><br>
 		  </div>
 
 		  <button type="submit" class="btn btn-primary">Acceder</button>

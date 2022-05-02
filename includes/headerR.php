@@ -1,3 +1,4 @@
+<?php$_SESSION['estado'] ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,6 +10,7 @@
 
 
 <body>
+
 	
 	<header id="main-header">
 		
@@ -19,7 +21,7 @@
 		<nav class="nav">
 			<ul>
 			<li><a href="C:\xampp\htdocs\Lista\AppPolitecnico\Public\Index\index.php">Inicio</a></li>
-				<li><a href="<?php unset($_SESSION['iniciado']); ?>">Cerrar sesión</a></li>
+					<a href="../../app/cerrar.php">Cerrar sesion </a>
 				<li><a href="#">Opciones</a></li>
 			</ul>
 		</nav><!-- / nav -->
