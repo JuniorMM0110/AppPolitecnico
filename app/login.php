@@ -4,7 +4,9 @@ require("../setup/datosConexion.php");
 
 $conexion = new Conexion();
 $conex = $conexion->conexion();
-
+$conas="";
+$conasw="";
+$conasq="";
 
 $usuario = $_POST['username'];
 $cont = $_POST['password'];
